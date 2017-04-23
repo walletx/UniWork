@@ -1,0 +1,155 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.42</VERSION>
+ <DEVICE>ATmega2560</DEVICE>
+ <WORKING_DIR>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes\m2560def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <CurrentMode><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>151</LINE></CurrentMode>
+  <MicrowaveTimer><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>152</LINE></MicrowaveTimer>
+  <DigitsEntered><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>154</LINE></DigitsEntered>
+  <SecondsDigit1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>155</LINE></SecondsDigit1>
+  <SecondsDigit2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>156</LINE></SecondsDigit2>
+  <MinutesDigit1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>157</LINE></MinutesDigit1>
+  <MinutesDigit2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>158</LINE></MinutesDigit2>
+  <DoorStatus><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>160</LINE></DoorStatus>
+  <PowerLevel><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>162</LINE></PowerLevel>
+  <Turntable><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>164</LINE></Turntable>
+  <TurntableStatus><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>165</LINE></TurntableStatus>
+  <TurntableTimer><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>166</LINE></TurntableTimer>
+  <RunningProcessing><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>168</LINE></RunningProcessing>
+  <RESET><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>186</LINE></RESET>
+  <EXT_INT0><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>871</LINE></EXT_INT0>
+  <EXT_INT1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>884</LINE></EXT_INT1>
+  <Timer0OVF><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>915</LINE></Timer0OVF>
+  <DEFAULT><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>183</LINE></DEFAULT>
+  <lcd_command><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1156</LINE></lcd_command>
+  <lcd_wait><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1176</LINE></lcd_wait>
+  <sleep_5ms><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1210</LINE></sleep_5ms>
+  <sleep_1ms><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1197</LINE></sleep_1ms>
+  <lcd_data><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1165</LINE></lcd_data>
+  <keypad><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>295</LINE></keypad>
+  <colloop><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>301</LINE></colloop>
+  <delay><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>307</LINE></delay>
+  <nextcol><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>341</LINE></nextcol>
+  <pullUpReset><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>315</LINE></pullUpReset>
+  <delay2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>321</LINE></delay2>
+  <rowloop><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>331</LINE></rowloop>
+  <convert><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>347</LINE></convert>
+  <letters><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>359</LINE></letters>
+  <symbols><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>364</LINE></symbols>
+  <checkMode><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>386</LINE></checkMode>
+  <star><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>374</LINE></star>
+  <zero><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>378</LINE></zero>
+  <hash><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>382</LINE></hash>
+  <invalidKey><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>411</LINE></invalidKey>
+  <entryMode><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>415</LINE></entryMode>
+  <runningModeJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>399</LINE></runningModeJump>
+  <pauseModeJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>402</LINE></pauseModeJump>
+  <finishedModeJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>405</LINE></finishedModeJump>
+  <entryPowerModeJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>408</LINE></entryPowerModeJump>
+  <runningMode><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>646</LINE></runningMode>
+  <pauseMode><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>788</LINE></pauseMode>
+  <finishedMode><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>824</LINE></finishedMode>
+  <entryPowerMode><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>571</LINE></entryPowerMode>
+  <entryModeStarJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>427</LINE></entryModeStarJump>
+  <entryModeHashJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>430</LINE></entryModeHashJump>
+  <entryModeAJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>433</LINE></entryModeAJump>
+  <entryModeNumber><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>436</LINE></entryModeNumber>
+  <entryModeStar><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>526</LINE></entryModeStar>
+  <entryModeHash><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>535</LINE></entryModeHash>
+  <entryModeA><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>549</LINE></entryModeA>
+  <entryDigit1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>459</LINE></entryDigit1>
+  <entryDigit2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>469</LINE></entryDigit2>
+  <entryDigit3Jump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>451</LINE></entryDigit3Jump>
+  <entryDigit4Jump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>454</LINE></entryDigit4Jump>
+  <entryDigit3><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>482</LINE></entryDigit3>
+  <entryDigit4><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>501</LINE></entryDigit4>
+  <startCooking><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>531</LINE></startCooking>
+  <entryPowerModeOne><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>584</LINE></entryPowerModeOne>
+  <entryPowerModeTwo><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>590</LINE></entryPowerModeTwo>
+  <entryPowerModeThree><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>596</LINE></entryPowerModeThree>
+  <entryPowerModeHash><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>602</LINE></entryPowerModeHash>
+  <PowerDigits1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>637</LINE></PowerDigits1>
+  <PowerDigits2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>632</LINE></PowerDigits2>
+  <PowerDigits3><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>627</LINE></PowerDigits3>
+  <PowerDigits4><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>622</LINE></PowerDigits4>
+  <runningModeStar><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>668</LINE></runningModeStar>
+  <runningModeHashJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>659</LINE></runningModeHashJump>
+  <runningModeCJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>662</LINE></runningModeCJump>
+  <runningModeDJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>665</LINE></runningModeDJump>
+  <runningModeHash><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>698</LINE></runningModeHash>
+  <runningModeC><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>705</LINE></runningModeC>
+  <runningModeD><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>750</LINE></runningModeD>
+  <correctTimeFormat><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>842</LINE></correctTimeFormat>
+  <runningStar1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>675</LINE></runningStar1>
+  <runningStarFinish><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>694</LINE></runningStarFinish>
+  <runningStar2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>682</LINE></runningStar2>
+  <runningStar3><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>690</LINE></runningStar3>
+  <runningC1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>714</LINE></runningC1>
+  <runningCFinish><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>746</LINE></runningCFinish>
+  <runningC2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>723</LINE></runningC2>
+  <runningC3><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>733</LINE></runningC3>
+  <runningC4><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>741</LINE></runningC4>
+  <runningD1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>758</LINE></runningD1>
+  <runningDFinish><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>783</LINE></runningDFinish>
+  <runningD2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>767</LINE></runningD2>
+  <runningD3><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>778</LINE></runningD3>
+  <PauseModeStar><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>795</LINE></PauseModeStar>
+  <PauseModeHash><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>799</LINE></PauseModeHash>
+  <TurntablePauseChange><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>819</LINE></TurntablePauseChange>
+  <FinishedModeHash><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>829</LINE></FinishedModeHash>
+  <correctTime1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>847</LINE></correctTime1>
+  <correctTimeReturn><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>865</LINE></correctTimeReturn>
+  <correctTime2><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>856</LINE></correctTime2>
+  <endint0><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>880</LINE></endint0>
+  <setPause><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>906</LINE></setPause>
+  <setEntryO><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>899</LINE></setEntryO>
+  <endint1><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>910</LINE></endint1>
+  <EndIFJump><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>922</LINE></EndIFJump>
+  <MicrowaveTime><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>925</LINE></MicrowaveTime>
+  <EndIF><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1152</LINE></EndIF>
+  <MagnetronOn><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>931</LINE></MagnetronOn>
+  <PowerLevelCheck><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>940</LINE></PowerLevelCheck>
+  <CheckSecond><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>964</LINE></CheckSecond>
+  <PowerLevel25><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>947</LINE></PowerLevel25>
+  <PowerLevel50><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>956</LINE></PowerLevel50>
+  <NotSecond><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>972</LINE></NotSecond>
+  <CountDown4thDigit><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>978</LINE></CountDown4thDigit>
+  <TurntableTime><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1080</LINE></TurntableTime>
+  <CountDown3rdDigit><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>984</LINE></CountDown3rdDigit>
+  <showTime><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1019</LINE></showTime>
+  <CountDown2ndDigit><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>991</LINE></CountDown2ndDigit>
+  <CountDown1stDigit><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>999</LINE></CountDown1stDigit>
+  <cooked><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1008</LINE></cooked>
+  <finishedCooking><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1045</LINE></finishedCooking>
+  <TurntableStatusChange><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1076</LINE></TurntableStatusChange>
+  <NotFiveSecond><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1091</LINE></NotFiveSecond>
+  <TurntableTurn><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1097</LINE></TurntableTurn>
+  <turn10><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1107</LINE></turn10>
+  <turn20><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1117</LINE></turn20>
+  <turn30><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1127</LINE></turn30>
+  <turn40><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1137</LINE></turn40>
+  <turn11><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1113</LINE></turn11>
+  <ShowTurnTable><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1147</LINE></ShowTurnTable>
+  <turn21><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1123</LINE></turn21>
+  <turn31><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1133</LINE></turn31>
+  <turn41><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1143</LINE></turn41>
+  <lcd_wait_loop><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1183</LINE></lcd_wait_loop>
+  <delayloop_1ms><FILE>C:\Users\pongpoltri\Documents\COMP2121 Labs\ProjectH6\ProjectH6.asm</FILE><LINE>1203</LINE></delayloop_1ms>
+ </LABELS>
+</ASSEMBLER_INFO>
