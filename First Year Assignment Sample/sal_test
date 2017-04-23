@@ -1,0 +1,68 @@
+//USAGE: ./runsal < sal_test
++ o 100  // 128
++ p 32   // 64
++ q 10   // 32
+//These is NOT an offical test
+//You have been warned
++ a 13   // 64
++ b 153  // 256
++ c 132  // 256
++ d 632  // 1024
++ e 16   // 32
++ f 40   // 128
++ g 1000 // 1024
++ h 251  // 512
++ i 48   // 64
++ k 89   // 128
++ l 32   // 64
++ m 100  // 128
++ n 200  // 256
+! 
+//a block of 32BYTES left
+
+- d
+!
+- a
+!
+- b
+!
+- c
+!
+- f
+!
+- e
+!
+- g
+!
+
+- i
+!
+
+- h
+!
+
+- q
+!
+
+- n
+!
+
+
+- o
+!
+- l
+!
+- m
+!
+- j
+!
+- k
+!
+
+- p
+!
+
+ //a block of 4098BYTES left
+//+ a 4000 //You should fail this one
+//+ a 0    //This should be prohibited
+//* a 10   //Otherwise, your memory will be corrupted.
