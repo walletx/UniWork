@@ -1,0 +1,280 @@
+Testing B-Trees
+
+5 not found
+-10 not found
+10000 not found
+Empty Tree: 
+
+5 not found
+-10 not found
+10000 not found
+500 found
+500
+500
+One Elem Tree: 500
+
+5 not found
+-10 not found
+10000 not found
+500 found
+200
+500
+777
+777
+500
+200
+One Node Full Tree: 200 500 777
+
+200
+500
+654
+777
+777
+654
+500
+200
+One Child Tree: 200 500 777 654
+
+5 not found
+-2447 not found
+198 found
+655 found
+100
+198
+200
+500
+653
+654
+655
+777
+777
+655
+654
+653
+500
+200
+198
+100
+Two Children Tree: 200 500 777 100 198 653 654 655
+
+5 not found
+-2447 not found
+1002 not found
+199 found
+655 found
+1001 found
+1000 found
+99 found
+199 found
+333 found
+777 found
+99
+100
+153
+198
+199
+200
+300
+333
+500
+653
+654
+655
+777
+843
+999
+1000
+1001
+1001
+1000
+999
+843
+777
+655
+654
+653
+500
+333
+300
+200
+199
+198
+153
+100
+99
+Full Tree: 200 500 777 100 153 198 300 333 653 654 655 843 999 1000 99 199 1001
+
+-1001
+-1000
+-999
+-843
+-333
+-300
+-199
+-153
+-99
+99
+199
+300
+333
+333
+300
+199
+99
+-99
+-153
+-199
+-300
+-333
+-843
+-999
+-1000
+-1001
+Negative Int Tree: -1000 -999 -843 -1001 -199 -153 -99 -333 -300 99 199 300 333
+
+
+$%$()
+...
+///
+100
+1001
+43
+49
+GET A LIFE
+Haggle
+MAN OH MAN
+The Best
+haggle
+haggle
+The Best
+MAN OH MAN
+Haggle
+GET A LIFE
+49
+43
+1001
+100
+///
+...
+$%$()
+
+String Tree: 100 43 49  $%$() ... 1001 Haggle The Best haggle /// GET A LIFE MAN OH MAN
+
+Copy Tree 1: 
+Copy Tree 2: 
+
+Copy Tree 1: 153 843 999 1000 1001 99 199 300 333
+Copy Tree 3: 153 843 999 1000 1001 99 199 300 333
+Copy Tree 4: 153 843 999 1000 1001 99 199 300 333
+
+Copy Tree 5: 
+Copy Tree 6: 
+
+Copy Tree 3: 153 843 999 1000 1001 99 199 300 333
+Copy Tree 4: 153 843 999 1000 1001 99 199 300 333
+
+Copy Tree 3: 0 1 4 7 8
+Copy Tree 6: 0 1 4 7 8
+
+Copy Tree 3: 
+Copy Tree 5: 
+
+Move Tree 1: 
+Move Tree 2: 
+
+Move Tree 1: 
+Move Tree 3: 153 843 999 1000 1001 99 199 300 333
+
+Move Tree 4: 
+Move Tree 5: 
+
+Move Tree 3: 
+Move Tree 4: 153 843 999 1000 1001 99 199 300 333
+
+Move Tree 4: 0 1 4 7 8
+Move Tree 5: 
+
+Move Tree 1: 
+Move Tree 4: 
+
+correct
+653 655 4294966643
+653 found
+1
+2
+3
+4
+5
+8
+10
+20
+25
+30
+35
+40
+50
+50
+40
+35
+30
+25
+20
+10
+8
+5
+4
+3
+2
+1
+Suspicious Tree: 5 10 20 1 2 3 8 30 40 50 4 25 35
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+10 20 30 1 5 9 6
+1
+5
+6
+9
+10
+20
+30

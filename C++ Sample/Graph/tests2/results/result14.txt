@@ -1,0 +1,19 @@
+1
+2
+3
+4
+original after replacement
+8
+7
+6
+5
+deleted nodes from original
+7
+5
+call mergeReplace() on original
+5
+copy of original
+1
+2
+3
+4

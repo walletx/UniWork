@@ -1,0 +1,20 @@
+printing nodes
+1
+2
+3
+4
+printing nodes after adding edges
+4
+1
+2
+3
+printing nodes after adding more edges
+4
+3
+1
+2
+printing nodes after last edge addition
+4
+3
+2
+1

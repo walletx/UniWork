@@ -1,0 +1,474 @@
+//COMP6771 Assignment 4 - Pongpol Trisuwan (z3471079)        
+
+/*********** BTREE_ITERATOR INTERFACE ***********/
+
+template<typename T>
+btree_iterator<T>::btree_iterator() {}
+
+template<typename T>
+btree_iterator<T>::btree_iterator(typename btree<T>::Node *pntee) : pointee{pntee} {}
+
+template<typename T>
+btree_iterator<T>::btree_iterator(typename btree<T>::Node *pntee, int nindex) 
+    : pointee{pntee}, node_index{nindex} {}
+
+/*template<typename T>
+btree_iterator<T>::btree_iterator(std::shared_ptr<typename btree<T>::Node> pntee, std::shared_ptr<btree<T>> btree_pntee) 
+    : pointee{pntee}, btree_ptr{btree_pntee} {}
+
+template<typename T>
+btree_iterator<T>::btree_iterator(std::shared_ptr<typename btree<T>::Node> pntee, std::shared_ptr<btree<T>> btree_pntee, const unsigned int nindex) 
+    : pointee{pntee}, btree_ptr{btree_pntee}, node_index{nindex} {}*/
+
+
+template<typename T> typename btree_iterator<T>::reference
+btree_iterator<T>::operator *() const {
+    return pointee->elements[node_index];
+}
+
+template<typename T> typename btree_iterator<T>::pointer
+btree_iterator<T>::operator ->() const {
+    return &(operator*());
+}
+
+template<typename T>
+btree_iterator<T>& btree_iterator<T>::operator ++() {
+    
+    std::cout << "NON CONST++" << std::endl;
+    
+    if (pointee->elements.size() != 0) {
+        if (node_index < static_cast<int>(pointee->elements.size()) && pointee->children[node_index + 1] != nullptr) {
+            
+            // std::cout << "NON CONST++ 1" << std::endl;
+            pointee = pointee->children[node_index + 1];
+            node_index = 0;
+                    
+            while (pointee->children[node_index] != nullptr) {
+                pointee = pointee->children[node_index];
+            }
+        
+        } else if (static_cast<int>(pointee->elements.size()) == node_index + 1) {
+        
+            // std::cout << "NON CONST++ 2" << std::endl;
+
+            if (pointee->parent != nullptr) {
+                typename btree<T>::Node *temp_pointee = pointee;
+                int temp_node_index = node_index;
+                bool lastnode = true;
+        
+                while (temp_pointee->parent != nullptr && static_cast<int>(pointee->elements.size()) == temp_node_index + 1) {
+                    for (unsigned int i = 0; i < temp_pointee->parent->elements.size(); ++i) {
+                        if (temp_pointee->elements[0] < temp_pointee->parent->elements[i]) {
+                            temp_node_index = i;
+                            lastnode = false;
+                            break;
+                        } else if (i == temp_pointee->parent->elements.size() - 1) {
+                            temp_node_index = i + 1;
+                        }
+                    }
+                    temp_pointee = temp_pointee->parent;
+                }
+        
+                // reaching last element in node
+                if (pointee->parent == nullptr && static_cast<int>(pointee->elements.size()) <= temp_node_index && lastnode == true) {
+                    ++node_index;
+                } else {
+                    pointee = temp_pointee;
+                    node_index = temp_node_index;
+                }
+                
+            } else {
+                ++node_index;
+            }
+
+                        
+        } else {
+            // std::cout << "NON CONST++ 3 " << node_index << std::endl;
+            ++node_index;
+        }
+    }        
+    
+    
+    return *this;
+}
+
+template<typename T>
+btree_iterator<T>& btree_iterator<T>::operator --() {
+    
+    std::cout << "NON CONST--" << std::endl;
+    
+    if (pointee->elements.size() != 0) {
+        if (pointee->children[node_index] != nullptr) {
+      
+            pointee = pointee->children[node_index];
+      
+            while (pointee->children[node_index] != nullptr) {
+                node_index = pointee->elements.size();
+                pointee = pointee->children[node_index];
+            }
+      
+        } else if (node_index == 0) {
+      
+            typename btree<T>::Node *temp_pointee = pointee;
+            int temp_node_index = node_index;
+            bool lastnode = true;
+    
+            while (temp_pointee->parent != nullptr && temp_node_index == 0) {
+                for (int i = static_cast<int>(temp_pointee->parent->elements.size()); i > 0; --i) {
+                    if (temp_pointee->elements[0] > temp_pointee->parent->elements[i]) {
+                        temp_node_index = i;
+                        lastnode = false;
+                        break;
+                    } else if (i == 1) {
+                        temp_node_index = 0;
+                    }
+                }
+                temp_pointee = temp_pointee->parent;
+            }
+    
+            // reaching last element in node
+            if (pointee->parent == nullptr && temp_node_index == 0 && lastnode == true) {
+                --node_index;
+            } else {
+                pointee = temp_pointee;
+                node_index = temp_node_index;
+            }
+                    
+        } else {
+            --node_index;
+        }
+    }
+    
+    return *this;
+}
+
+template<typename T>
+btree_iterator<T> btree_iterator<T>::operator ++(int) {
+    btree_iterator<T> temp_tree(*this);
+    ++(*this);
+    return temp_tree;
+}
+
+template<typename T>
+btree_iterator<T> btree_iterator<T>::operator --(int) {
+    btree_iterator<T> temp_tree(*this);
+    --(*this);
+    return temp_tree;
+}
+
+template<typename T>
+bool btree_iterator<T>::operator==(const btree_iterator& other) const {
+    return (pointee == other.pointee) && (node_index == other.node_index);
+}
+
+template<typename T>
+bool btree_iterator<T>::operator!=(const btree_iterator& other) const {
+    return !(*this == other);
+}
+
+template<typename T>
+bool btree_iterator<T>::operator==(const const_btree_iterator<T>& other) const {
+    return (pointee == other.pointee) && (node_index == other.node_index);
+}
+
+template<typename T>
+bool btree_iterator<T>::operator!=(const const_btree_iterator<T>& other) const {
+    return !(*this == other);
+}
+
+/*********** BTREE_ITERATOR HELPER FUNCTIONS ***********/
+template<typename T>
+void btree_iterator<T>::leftTravDown() {
+    
+    if (pointee->children[node_index] == nullptr) {
+        return;
+    } else {
+        node_index = 0;
+        pointee = pointee->children[node_index];
+        leftTravDown();
+    }
+}
+
+template<typename T>
+void btree_iterator<T>::leftTravUp(const T &elem) {
+    if (pointee->parent == nullptr) {
+        return;
+    } else {
+        
+        pointee = pointee->parent;
+        
+        for (unsigned int i = 0; i < pointee->elements.size(); ++i) {
+            if (elem < pointee->elements[i]) {
+                node_index = i;
+                return;
+            }
+        }
+        
+        leftTravUp(elem);
+    }
+}
+
+template<typename T>
+void btree_iterator<T>::rightTravDown() {
+        
+    if (pointee->children[node_index] == nullptr) {
+        return;
+    } else {
+        node_index = pointee->children[node_index]->elements.size() - 1;
+        pointee = pointee->children[node_index];
+        rightTravDown();
+    }
+}
+
+template<typename T>
+void btree_iterator<T>::rightTravUp(const T &elem) {
+    if (pointee->parent == nullptr) {
+        return;
+    } else {
+        
+        pointee = pointee->parent;
+        
+        for (unsigned int i = 0; i < pointee->elements.size(); ++i) {
+            if (pointee->elements[i] < elem) {
+                node_index = i;
+                return;
+            }
+        }
+        
+        leftTravUp(elem);
+    }
+}
+
+/*********** CONST_BTREE_ITERATOR INTERFACE ***********/
+
+template<typename T>
+const_btree_iterator<T>::const_btree_iterator() {}
+
+template<typename T>
+const_btree_iterator<T>::const_btree_iterator(typename btree<T>::Node *pntee) : pointee{pntee} {}
+
+template<typename T>
+const_btree_iterator<T>::const_btree_iterator(typename btree<T>::Node *pntee, int nindex) 
+    : pointee{pntee}, node_index{nindex} {}
+
+template<typename T>
+const_btree_iterator<T>::const_btree_iterator(const btree_iterator<T>& rhs): pointee(rhs.pointee), node_index(rhs.node_index) {}
+
+template<typename T> typename const_btree_iterator<T>::reference
+const_btree_iterator<T>::operator *() const {
+    return pointee->elements[node_index];
+}
+
+template<typename T> typename const_btree_iterator<T>::pointer
+const_btree_iterator<T>::operator ->() const {
+    return &(operator*());
+}
+
+template<typename T>
+const_btree_iterator<T>& const_btree_iterator<T>::operator ++() {
+    
+    std::cout << "CONST++" << std::endl;
+        
+    if (pointee->elements.size() != 0) {
+        if (node_index < static_cast<int>(pointee->elements.size()) && pointee->children[node_index + 1] != nullptr) {
+            
+            // std::cout << "CONST++ 1" << std::endl;
+            pointee = pointee->children[node_index + 1];
+            node_index = 0;
+                    
+            while (pointee->children[node_index] != nullptr) {
+                pointee = pointee->children[node_index];
+            }
+        
+        } else if (static_cast<int>(pointee->elements.size()) == node_index + 1) {
+        
+            // std::cout << "CONST++ 2" << std::endl;
+        
+            if (pointee->parent != nullptr) {
+                typename btree<T>::Node *temp_pointee = pointee;
+                int temp_node_index = node_index;
+                bool lastnode = true;
+        
+                while (temp_pointee->parent != nullptr && static_cast<int>(pointee->elements.size()) == temp_node_index + 1) {
+                    for (unsigned int i = 0; i < temp_pointee->parent->elements.size(); ++i) {
+                        if (temp_pointee->elements[0] < temp_pointee->parent->elements[i]) {
+                            temp_node_index = i;
+                            lastnode = false;
+                            break;
+                        } else if (i == temp_pointee->parent->elements.size() - 1) {
+                            temp_node_index = i + 1;
+                        }
+                    }
+                    temp_pointee = temp_pointee->parent;
+                }
+        
+                // reaching last element in node
+                if (pointee->parent == nullptr && static_cast<int>(pointee->elements.size()) == temp_node_index && lastnode == true) {
+                    ++node_index;
+                } else {
+                    pointee = temp_pointee;
+                    node_index = temp_node_index;
+                }
+                
+            } else {
+                ++node_index;
+            }
+
+                        
+        } else {
+            // std::cout << "CONST++ 3 " << pointee->elements.size() << " " << node_index << std::endl;
+            ++node_index;
+        }
+    }        
+
+        
+    return *this;
+}
+
+template<typename T>
+const_btree_iterator<T>& const_btree_iterator<T>::operator --() {
+    
+        std::cout << "CONST--" << std::endl;
+    
+      if (pointee->elements.size() != 0) {
+          if (pointee->children[node_index] != nullptr) {
+        
+              pointee = pointee->children[node_index];
+        
+              while (pointee->children[node_index] != nullptr) {
+                  node_index = pointee->elements.size();
+                  pointee = pointee->children[node_index];
+              }
+        
+          } else if (node_index == 0) {
+        
+              typename btree<T>::Node *temp_pointee = pointee;
+              int temp_node_index = node_index;
+              bool lastnode = true;
+      
+              while (temp_pointee->parent != nullptr && temp_node_index == 0) {
+                  for (int i = static_cast<int>(temp_pointee->parent->elements.size()); i > 0; --i) {
+                      if (temp_pointee->elements[0] > temp_pointee->parent->elements[i]) {
+                          temp_node_index = i;
+                          lastnode = false;
+                          break;
+                      } else if (i == 1) {
+                          temp_node_index = 0;
+                      }
+                  }
+                  temp_pointee = temp_pointee->parent;
+              }
+      
+              // reaching last element in node
+              if (pointee->parent == nullptr && temp_node_index == 0 && lastnode == true) {
+                  --node_index;
+              } else {
+                  pointee = temp_pointee;
+                  node_index = temp_node_index;
+              }
+                      
+          } else {
+              --node_index;
+          }
+      }
+    
+    return *this;
+}
+
+template<typename T>
+const_btree_iterator<T> const_btree_iterator<T>::operator ++(int) {
+    const_btree_iterator<T> temp_tree(*this);
+    ++(*this);
+    return temp_tree;
+}
+
+template<typename T>
+const_btree_iterator<T> const_btree_iterator<T>::operator --(int) {
+    const_btree_iterator<T> temp_tree(*this);
+    --(*this);
+    return temp_tree;
+}
+
+template<typename T>
+bool const_btree_iterator<T>::operator==(const const_btree_iterator& other) const {
+    return (pointee == other.pointee) && (node_index == other.node_index);
+}
+
+template<typename T>
+bool const_btree_iterator<T>::operator!=(const const_btree_iterator& other) const {
+    return !(*this == other);
+}
+
+template<typename T>
+bool const_btree_iterator<T>::operator==(const btree_iterator<T>& other) const {
+    return (pointee == other.pointee) && (node_index == other.node_index);
+}
+
+template<typename T>
+bool const_btree_iterator<T>::operator!=(const btree_iterator<T>& other) const {
+    return !(*this == other);
+}
+
+/*********** CONST_BTREE_ITERATOR HELPER FUNCTIONS ***********/
+
+template<typename T>
+void const_btree_iterator<T>::leftTravDown() {
+    
+    if (pointee->children[node_index] == nullptr) {
+        return;
+    } else {
+        node_index = 0;
+        pointee = pointee->children[node_index];
+        leftTravDown();
+    }
+}
+
+template<typename T>
+void const_btree_iterator<T>::leftTravUp(const T &elem) {
+    if (pointee->parent == nullptr) {
+        return;
+    } else {
+        
+        pointee = pointee->parent;
+        
+        for (unsigned int i = 0; i < pointee->elements.size(); ++i) {
+            if (elem < pointee->elements[i]) {
+                node_index = i;
+                return;
+            }
+        }
+        
+        leftTravUp(elem);
+    }
+}
+
+template<typename T>
+void const_btree_iterator<T>::rightTravDown() {
+        
+    if (pointee->children[node_index] == nullptr) {
+        return;
+    } else {
+        node_index = pointee->children[node_index]->elements.size() - 1;
+        pointee = pointee->children[node_index];
+        rightTravDown();
+    }
+}
+
+template<typename T>
+void const_btree_iterator<T>::rightTravUp(const T &elem) {
+    if (pointee->parent == nullptr) {
+        return;
+    } else {
+        
+        pointee = pointee->parent;
+        
+        for (unsigned int i = 0; i < pointee->elements.size(); ++i) {
+            if (pointee->elements[i] < elem) {
+                node_index = i;
+                return;
+            }
+        }
+        
+        leftTravUp(elem);
+    }
+}

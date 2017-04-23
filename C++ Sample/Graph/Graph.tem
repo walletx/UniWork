@@ -1,0 +1,391 @@
+//COMP6771 Assignment 3 - Pongpol Trisuwan (z3471079)
+
+#include "Graph.h"
+
+/*********** GRAPH INTERFACE ***********/
+
+// Constructors
+
+// Default Constructor
+template <typename N, typename E> 
+ gdwg::Graph<N, E>::Graph() : nodeList{} {}
+
+// Copy Constructor 
+template <typename N, typename E> 
+ gdwg::Graph<N, E>::Graph(const Graph &graph) {
+     
+     clear();
+     
+     // Loop through Nodes in the old graph and call addNode on their values
+     for (auto niter = graph.nodeList.begin(); niter!= graph.nodeList.end(); ++niter) {
+         addNode(*((*niter)->nodeVal));
+     }
+     
+     // Loop through Edges in the old graph and call addEdge on their values
+     for (auto niter = graph.nodeList.begin(); niter!= graph.nodeList.end(); ++niter) {
+         for (auto eiter = ((*niter)->edgeList).begin(); eiter != ((*niter)->edgeList).end(); ++eiter) {
+             addEdge(*((*niter)->nodeVal), *((((*eiter)->destNode).lock())->nodeVal), *((*eiter)->edgeVal));
+         }
+     }
+     
+ }
+
+ // Copy Assignment
+template <typename N, typename E> 
+gdwg::Graph<N, E>& gdwg::Graph<N, E>::operator= (const Graph &graph) {
+    
+    if (this != &graph) {
+        
+        clear();
+        
+        for (auto niter = graph.nodeList.begin(); niter!= graph.nodeList.end(); ++niter) {
+            addNode(*((*niter)->nodeVal));
+        }
+     
+        for (auto niter = graph.nodeList.begin(); niter!= graph.nodeList.end(); ++niter) {
+            for (auto eiter = ((*niter)->edgeList).begin(); eiter != ((*niter)->edgeList).end(); ++eiter) {
+                addEdge(*((*niter)->nodeVal), *((((*eiter)->destNode).lock())->nodeVal), *((*eiter)->edgeVal));
+            }
+        }
+    }
+    
+    return *this;
+}
+
+// Move Constructor
+template <typename N, typename E> 
+ gdwg::Graph<N, E>::Graph(Graph &&graph) {
+     
+     // Move the node vector in the old graph - this will bring along all pointers
+     nodeList = std::move(graph.nodeList);
+ }
+ 
+ //Move Assigment
+ template <typename N, typename E> 
+ gdwg::Graph<N, E>& gdwg::Graph<N, E>::operator= (Graph &&graph) {
+    
+     if (this != &graph) {
+         
+         nodeList = std::move(graph.nodeList);
+
+     }
+    
+     return *this;
+ }
+
+template <typename N, typename E> 
+ bool gdwg::Graph<N, E>::addNode(const N& val) {
+    
+    if (!isNode(val)) {
+        auto newNode = std::make_shared<Node>(val);
+        nodeList.push_back(newNode);
+        return true;
+    }
+    
+    return false;
+}
+
+// Member functions
+
+template <typename N, typename E> 
+bool gdwg::Graph<N, E>::addEdge(const N& src, const N& dst, const E& w) {
+                    
+    auto srcNode = std::find_if(nodeList.begin(), nodeList.end(), [&src] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == src;
+    });
+    
+    if (srcNode == nodeList.end()) {
+        throw std::runtime_error("Source node does not exist");
+    }
+        
+    auto destNode = std::find_if(nodeList.begin(), nodeList.end(), [&dst] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == dst;
+    });
+    
+    if (destNode == nodeList.end()) {
+        throw std::runtime_error("Destination node does not exist");
+    }
+    
+    auto existEdge = std::find_if(((*srcNode)->edgeList).begin(), ((*srcNode)->edgeList).end(), [&w, &destNode] (const std::shared_ptr<Edge> &ed) {
+        return (ed->destNode).lock() == *destNode && *(ed->edgeVal) == w;
+    });
+    
+    if (existEdge == ((*srcNode)->edgeList).end()) {
+        auto newEdge = std::make_shared<Edge>(w, *destNode);    
+        ((*srcNode)->edgeList).push_back(newEdge);
+        return true;
+    }
+        
+    return false;
+}
+
+template <typename N, typename E> 
+bool gdwg::Graph<N, E>::replace(const N& oldData, const N& newData) {
+    
+    auto oldNode = std::find_if(nodeList.begin(), nodeList.end(), [&oldData] (const std::shared_ptr<Node> &n) {
+        if (*(n->nodeVal) == oldData) {return true;}
+        return false;
+    });
+    
+    if (oldNode == nodeList.end()) {
+        throw std::runtime_error("Node does not exist");
+        return false;
+    }
+    
+    auto newNode = std::find_if(nodeList.begin(), nodeList.end(), [&newData] (const std::shared_ptr<Node> &n) {
+        if (*(n->nodeVal) == newData) {return true;}
+        return false;
+    });
+    
+    if (newNode == nodeList.end()) {
+        *((*oldNode)->nodeVal) = newData;
+        return true;
+    }
+    
+    return false;
+}
+
+template <typename N, typename E> 
+void gdwg::Graph<N, E>::mergeReplace(const N& oldData, const N& newData) {
+    
+    auto oldNode = std::find_if(nodeList.begin(), nodeList.end(), [&oldData] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == oldData;
+    });
+    
+    if (oldNode == nodeList.end()) {
+        throw std::runtime_error("Node does not exist");
+    }
+    
+    auto newNode = std::find_if(nodeList.begin(), nodeList.end(), [&newData] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == newData;
+    });
+    
+    if (newNode == nodeList.end()) {
+        throw std::runtime_error("Node does not exist");
+    }
+    
+    //replace(oldData, newData);
+    
+    // Adding the edges of oldNode to newNode and checking for duplicates
+    std::for_each(((*oldNode)->edgeList).begin(), ((*oldNode)->edgeList).end(), [&oldNode, &newNode] (const std::shared_ptr<Edge> &ed1) {
+        
+        auto existEdge = std::find_if(((*newNode)->edgeList).begin(), ((*newNode)->edgeList).end(), [&ed1] (const std::shared_ptr<Edge> &ed2) {
+            return *(ed1->edgeVal) == *(ed2->edgeVal) && ed1->destNode.lock() == ed2->destNode.lock();
+        });
+        
+        if (existEdge == ((*newNode)->edgeList).end()) {
+            ((*newNode)->edgeList).push_back(ed1);
+        }
+    });
+    
+    // Make the edges in other nodes which pointed to oldNode point to newNode
+    std::for_each(nodeList.begin(), nodeList.end(), [&oldNode, &newNode] (const std::shared_ptr<Node> &n) {
+        
+        for (auto iter = (n->edgeList).begin(); iter != (n->edgeList).end(); ++iter) {
+            
+            if (((*iter)->destNode).lock() == *oldNode) {
+                
+                if (n != *newNode) {
+                    (*iter)->destNode = *newNode;
+                } else {
+                                        
+                    // Handling cases with self-pointed edges
+                    auto existEdge = std::find_if(((*newNode)->edgeList).begin(), ((*newNode)->edgeList).end(), [&iter, &newNode] (const std::shared_ptr<Edge> &ed) {
+                        return *(ed->edgeVal) == *((*iter)->edgeVal) && ed->destNode.lock() == *newNode;
+                    });
+                    
+                    if (existEdge == ((*newNode)->edgeList).end()) {
+                        (*iter)->destNode = *newNode;
+                    }
+                }
+            }
+        }
+
+    });
+    
+    deleteNode(oldData);
+}
+
+template <typename N, typename E> 
+void gdwg::Graph<N, E>::deleteNode(const N& val) noexcept {
+    
+    auto selectedNode = std::find_if(nodeList.begin(), nodeList.end(), [&val] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == val;
+    });
+    
+    if (selectedNode != nodeList.end()) {
+        nodeList.erase(selectedNode);
+    }
+    
+    // Prunes the edges in the other nodes - check for expired weak_ptr and delete
+    // Increment iterator only if erase is not called
+    std::for_each(nodeList.begin(), nodeList.end(), [] (const std::shared_ptr<Node> &n) {
+        
+        for (auto iter = (n->edgeList).begin(); iter != (n->edgeList).end();) {
+            if (((*iter)->destNode).expired()) {
+                iter = (n->edgeList).erase(iter);
+            } else {
+                ++iter;
+            }
+        }
+
+    });
+}
+
+template <typename N, typename E> 
+void gdwg::Graph<N, E>::deleteEdge(const N& src, const N& dst, const E& w) noexcept {
+    
+    auto srcNode = std::find_if(nodeList.begin(), nodeList.end(), [&src] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == src;
+    });
+    
+    auto destNode = std::find_if(nodeList.begin(), nodeList.end(), [&dst] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == dst;
+    });
+    
+    auto selectedEdge = std::find_if(((*srcNode)->edgeList).begin(), ((*srcNode)->edgeList).end(), [&w, &destNode] (const std::shared_ptr<Edge> &ed) {
+        return (ed->destNode).lock() == *destNode && *(ed->edgeVal) == w;
+    });
+    
+    if (selectedEdge != ((*srcNode)->edgeList).end()) {
+        ((*srcNode)->edgeList).erase(selectedEdge);
+    }
+}
+
+template <typename N, typename E> 
+void gdwg::Graph<N, E>::clear() noexcept {
+    nodeList.clear();
+}
+
+template <typename N, typename E> 
+ bool gdwg::Graph<N, E>::isNode(const N& val) const {
+    
+    for (auto iter = nodeList.begin(); iter != nodeList.end(); ++iter) {
+        if (*((*iter)->nodeVal) == val) {return true;}
+    }
+        
+    return false;
+}
+
+template <typename N, typename E> 
+bool gdwg::Graph<N, E>::isConnected(const N& src, const N& dst) const {
+    
+    auto srcNode = std::find_if(nodeList.begin(), nodeList.end(), [&src] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == src;
+    });
+    
+    if (srcNode == nodeList.end()) {
+        throw std::runtime_error("Source Node does not exist");
+        return false;
+    }
+    
+    auto destNode = std::find_if(nodeList.begin(), nodeList.end(), [&dst] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == dst;
+    });
+    
+    if (destNode == nodeList.end()) {
+        throw std::runtime_error("Destination Node does not exist");
+        return false;
+    }
+    
+    auto existEdge = std::find_if(((*srcNode)->edgeList).begin(), ((*srcNode)->edgeList).end(), [&destNode] (const std::shared_ptr<Edge> &ed) {
+        return (ed->destNode).lock() == *destNode;
+    });
+    
+    if (existEdge == ((*srcNode)->edgeList).end()) {
+        return false;
+    }
+    
+    return true;
+}
+
+template <typename N, typename E> 
+ void gdwg::Graph<N, E>::printNodes() const {
+    
+    // Print function is const so making a copy of the list then sorting 
+    // Making vector mutable could ruin the 'iterator'
+    std::vector<std::shared_ptr<Node>> nlist(nodeList.begin(), nodeList.end());
+    
+    // Sort using lambda with overloaded < operator    
+    std::sort(nlist.begin(), nlist.end(),
+    						[] (const std::shared_ptr<Node> &n1, const std::shared_ptr<Node> &n2) {
+    							return *n1 < *n2;
+    							});
+    
+    for (auto iter = nlist.begin(); iter != nlist.end(); ++iter) {
+        std::cout << **iter << std::endl;
+    }
+}
+
+template <typename N, typename E> 
+void gdwg::Graph<N, E>::printEdges(const N& val) const {
+    
+    auto selectedNode = std::find_if(nodeList.begin(), nodeList.end(), [&val] (const std::shared_ptr<Node> &n) {
+        return *(n->nodeVal) == val;
+    });
+    
+    if (selectedNode == nodeList.end()) {
+        throw std::runtime_error("Node does not exist");
+    }
+    
+    std::cout << "Edges attached to Node " << **selectedNode << std::endl;
+    
+    // Print function is const so making a copy of the list then sorting
+    // Making vector mutable could ruin the 'iterator'
+    std::vector<std::shared_ptr<Edge>> elist(((*selectedNode)->edgeList).begin(), ((*selectedNode)->edgeList).end());
+    
+    // Sort using lambda with overloaded < operator    
+    std::sort(elist.begin(), elist.end(), 
+                            [] (const std::shared_ptr<Edge> &ed1, const std::shared_ptr<Edge> &ed2) {
+                                return *ed1 < *ed2;
+                            });                            
+                                
+    if (((*selectedNode)->edgeList).size() > 0) {
+        for (auto iter = elist.begin(); iter != elist.end(); ++iter) {
+            std::cout << **iter << std::endl;
+        }   
+    } else {
+        std::cout << "(null)" << std::endl;
+    }                         
+}
+
+// Iterator functions
+
+template <typename N, typename E> 
+void gdwg::Graph<N, E>::begin() const {
+    iter = nodeList.cbegin();
+}
+
+template <typename N, typename E> 
+bool gdwg::Graph<N, E>::end() const {
+    return iter == nodeList.cend();
+}
+
+template <typename N, typename E> 
+void gdwg::Graph<N, E>::next() const {
+    ++iter;
+}
+
+template <typename N, typename E> 
+const N& gdwg::Graph<N, E>::value() const {
+    return *((*iter)->nodeVal);
+}
+
+/*********** NODE INTERFACE ***********/
+
+template <typename N, typename E> 
+ gdwg::Graph<N, E>::Node::Node() {}
+
+template <typename N, typename E> 
+ gdwg::Graph<N, E>::Node::Node(const N &label) : nodeVal{std::make_shared<N>(label)} {}
+
+
+/*********** EDGE INTERFACE ***********/
+ 
+ template <typename N, typename E> 
+ gdwg::Graph<N, E>::Edge::Edge(){}
+
+template <typename N, typename E> 
+gdwg::Graph<N, E>::Edge::Edge(const E &weight, std::shared_ptr<Node> &dest) : edgeVal{std::make_shared<E>(weight)} {
+    destNode = dest;
+}

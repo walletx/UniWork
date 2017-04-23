@@ -1,0 +1,54 @@
+===== Timothy Auto-Generated =====
+
+time ./test_sample > test_sample.txt
+
+time ./test02 > test02.txt
+time ./test03 > test03.txt
+time ./test04 > test04.txt
+time ./test05 > test05.txt
+#time ./test06 > test06.txt
+time ./test07 > test07.txt
+
+time ./test02_backup > test02_backup.txt
+time ./test03_backup > test03_backup.txt
+time ./test04_backup > test04_backup.txt
+time ./test05_backup > test05_backup.txt
+time ./test06_backup > test06_backup.txt
+
+
+===== Others - Can be validated =====
+
+time./test_sample > test_sample_2.txt
+
+time ./test02 > test02_2.txt
+time ./test03 > test03_2.txt
+time ./test04 > test04_2.txt
+time ./test05 > test05_2.txt
+#time ./test06 > test06_2.txt
+time ./test07 > test07_2.txt
+
+time ./test02_backup > test02_backup_2.txt
+time ./test03_backup > test03_backup_2.txt
+time ./test04_backup > test04_backup_2.txt
+time ./test05_backup > test05_backup_2.txt
+time ./test06_backup > test06_backup_2.txt
+
+diff -b test02.txt test02_2.txt
+diff -b test03.txt test03_2.txt
+diff -b test04.txt test04_2.txt
+diff -b test05.txt test05_2.txt
+#diff -b test06.txt test06_2.txt
+diff -b test07.txt test07_2.txt
+diff -b test02_backup.txt test02_backup_2.txt
+diff -b test03_backup.txt test03_backup_2.txt
+diff -b test04_backup.txt test04_backup_2.txt
+diff -b test05_backup.txt test05_backup_2.txt
+diff -b test06_backup.txt test06_backup_2.txt
+
+
+===== Cannot be validated =====
+./test01 > test01_2.txt
+diff test01.txt test01_2.txt
+
+./test01_backup > test01_backup_2.txt
+diff test01_backup.txt test01_backup_2.txt

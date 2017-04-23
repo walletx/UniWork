@@ -1,0 +1,14 @@
+printing initial order
+1
+2
+3
+4
+order after edge deletion
+2
+4
+1
+3
+order after node deletion
+3
+2
+1

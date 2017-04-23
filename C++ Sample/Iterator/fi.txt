@@ -1,0 +1,65 @@
+template <typename T> 
+btree<T>::btree(const btree<T>& original) {
+    
+    std::cout << "Copy Constructor" << std::endl;
+        
+    delete root;
+    root = nullptr;
+    
+    nodeCap = original.nodeCap;
+    
+    // std::cout << "CopyCon 2" << std::endl;
+    
+    std::queue<std::pair<Node*, Node*>> node_queue;
+    typename std::vector<T>::iterator bound_iter;
+    unsigned int bound_index;
+    std::pair<Node*, Node*> node_and_parent;
+    
+    Node *newRoot = new Node(nullptr, original.nodeCap);
+    for (unsigned int i = 0; i < original.root->elements.size(); ++i) {
+        newRoot->elements.push_back(original.root->elements[i]);
+    }
+        
+    for (unsigned int i = 0; i < original.root->children.size(); ++i) {
+        if (original.root->children[i] != nullptr) {
+            node_queue.push(std::make_pair(original.root->children[i], newRoot));
+        }
+    }
+    
+    root = newRoot;
+    
+    // std::cout << "CopyCon 3" << std::endl;
+
+    while(!node_queue.empty()) {
+
+        
+        node_and_parent = node_queue.front();
+        node_queue.pop();
+
+        Node *newNode = new Node(node_and_parent.second, nodeCap);
+        
+        // std::cout << "CopyCon 4" << std::endl;
+        for (unsigned int i = 0; i < node_and_parent.first->elements.size(); ++i) {
+            newNode->elements.push_back(node_and_parent.first->elements[i]);
+        }
+
+        // std::cout << "CopyCon 5" << std::endl;
+        for (unsigned int i = 0; i < node_and_parent.first->children.size(); ++i) {
+            if (node_and_parent.first->children[i] != nullptr) {
+                node_queue.push(std::make_pair(node_and_parent.first->children[i], newNode));
+            }
+        }
+        
+        // std::cout << "CopyCon 6" << std::endl;
+        
+        bound_iter = std::lower_bound(node_and_parent.second->elements.begin(), node_and_parent.second->elements.end(), newNode->elements[0]);
+        bound_index = static_cast<unsigned int>(std::distance(node_and_parent.second->elements.begin(), bound_iter));
+        
+        node_and_parent.second->children[bound_index] = newNode;
+        // std::cout << "CopyCon 7" << std::endl;
+        
+    }
+    
+    // std::cout << "CopyCon 8" << std::endl;
+    
+}

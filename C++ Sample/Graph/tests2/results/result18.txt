@@ -1,0 +1,9 @@
+printing initial order
+4
+3
+2
+1
+order after node deletion
+1
+2
+3
