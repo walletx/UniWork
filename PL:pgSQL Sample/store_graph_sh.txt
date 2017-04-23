@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# store_graph.sh  ... A script to store the graph into the database.
+# The graph is originally stored in the form of edge files.
+# This script will create a table named tbl_edge(v1: Integer, v2: Integer),
+# representing the two vertices, and both vertices are in Integer format.
+
+dropdb graph
+createdb graph
+
+psql graph << EOF
+drop table if exists tbl_dataset0;
+create table tbl_dataset0 ( \
+        v1 Integer, \
+        v2 Integer \
+);
+
+\copy tbl_dataset0 FROM 'dataset_0.txt' DELIMITER ',' CSV; 
+
+EOF
+
